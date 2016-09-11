@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         cbNG = (CheckBox) findViewById(R.id.checkBoxNG);
         cbB = (CheckBox) findViewById(R.id.checkBoxB);
         rgstatus = (RadioGroup) findViewById(R.id.rgstatus);
-        minuman = (Spinner) findViewById(R.id.spinner);
+        minuman = (Spinner) findViewById(R.id.spinnerMinuman);
         hasil = (TextView) findViewById(R.id.textViewHasil);
 
         findViewById(R.id.buttonOK).setOnClickListener(new View.OnClickListener() {
@@ -46,15 +46,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void doClick() {
         String pesanan = "Pesanan anda : \n";
-        int startlen = hasil.length();
         if (cbS.isChecked()) pesanan += cbS.getText() + "\n";
         if (cbB.isChecked()) pesanan += cbB.getText() + "\n";
         if (cbNG.isChecked()) pesanan += cbNG.getText() + "\n";
         if (cbR.isChecked()) pesanan += cbR.getText() + "\n";
         String nama = Nama.getText().toString();
         String meja = nomer.getText().toString();
-
-        hasil.setText("Nama anda " + nama + " nomer meja " + meja + " memesan\n" + pesanan);
+        String selera;
+        RadioButton rb = (RadioButton) findViewById(rgstatus.getCheckedRadioButtonId());
+        selera = rb.getText().toString();
+        hasil.setText("Nama anda " + nama + " nomer meja " + meja + " memesan\n" + pesanan + minuman.getSelectedItem().toString() + "\nDessert yang anda pesan " + jmakan.getText().toString() + "\nBuah yang anda pesan " + jminum.getText().toString() + "\nSelera anda : " + selera);
 
     }
 }
