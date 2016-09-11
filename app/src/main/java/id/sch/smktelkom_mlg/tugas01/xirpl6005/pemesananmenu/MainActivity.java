@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void doClick() {
         String pesanan = "Pesanan anda : \n";
+        boolean valid = true;
         if (cbS.isChecked()) pesanan += cbS.getText() + "\n";
         if (cbB.isChecked()) pesanan += cbB.getText() + "\n";
         if (cbNG.isChecked()) pesanan += cbNG.getText() + "\n";
@@ -55,7 +56,22 @@ public class MainActivity extends AppCompatActivity {
         String selera;
         RadioButton rb = (RadioButton) findViewById(rgstatus.getCheckedRadioButtonId());
         selera = rb.getText().toString();
-        hasil.setText("Nama anda " + nama + " nomer meja " + meja + " memesan\n" + pesanan + minuman.getSelectedItem().toString() + "\nDessert yang anda pesan " + jmakan.getText().toString() + "\nBuah yang anda pesan " + jminum.getText().toString() + "\nSelera anda : " + selera);
-
+        if (rb.getText().toString().isEmpty()) {
+            hasil.setError("Belum memilih selera");
+            valid = false;
+        }
+        if (nama.isEmpty()) {
+            Nama.setError("Nama belum diisi");
+            valid = false;
+        }
+        if (meja.isEmpty()) {
+            nomer.setError("Nomor meja belum diisi");
+            valid = false;
+        } else {
+            valid = true;
+        }
+        if (valid) {
+            hasil.setText("Nama anda " + nama + " nomer meja " + meja + " memesan\n" + pesanan + minuman.getSelectedItem().toString() + "\nDessert yang anda pesan " + jmakan.getText().toString() + "\nBuah yang anda pesan " + jminum.getText().toString() + "\nSelera anda : " + selera);
+        }
     }
 }
